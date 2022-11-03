@@ -86,7 +86,7 @@ def find_post_list():
     list_open_status = driver.find_element(by=By.ID, value='toplistSpanBlind') # 목록열기 버튼 텍스트 상태 확인
     if list_open_status.text == '목록열기':  # 목록열기로 떠있으면 목록을 열어준다
         list_open.send_keys('\n')
-        print('its open ya')
+        # print('its open ya')
 
     page_bar = driver.find_element(by=By.CLASS_NAME, value='blog2_paginate')  # 페이지번호 틀
     pages = page_bar.find_elements(by=By.CSS_SELECTOR, value='a')  # 각 페이지 숫자 버튼
@@ -107,10 +107,10 @@ def print_page_export():
         soup = BeautifulSoup(html, 'html.parser')
         li = soup.select('#listTopForm > table > tbody > tr > td.title > div > span')  # 뷰티풀숲으로 리스트상의 모든 제목들 선택
         li_date = soup.select('#listTopForm > table > tbody > tr > td.date > div > span')  # 리스트상의 모든 날짜들 선택
-        headless_driver = r"C:\Users\jay\Desktop\edgedriver_win64\msedgedriver.exe"
+        # headless_driver = r"C:\Users\jay\Desktop\edgedriver_win64\msedgedriver.exe" # 이건 로컬에 웹드라이버가 있을 때 했던 것
         # 또 다른 웹드라이버를 만들어줘야지 초반에 게시글 번호 따려고 한 드라이버를 똑같이 써서 다시 get을 해버리면 dom이 날아가버림
         headless_driver = webdriver.Edge(options=options, service=edge_service)  #service=edge_service 다시 **********
-        print(li, li_date,'안녕')
+        # print(li, li_date,'안녕')
 
         for i in range(len(li)):
             link = li[i].find('a')['href'] # 게시글 링크 확인
@@ -140,8 +140,8 @@ def print_page_export():
         pages = page_bar.find_elements(by=By.CSS_SELECTOR, value='a')
     new_window.destroy()
     mb.showinfo('Completed', '완료')
-    driver.close()  # 다 끝났으니 웹드라이버를 종료해줌
-    headless_driver.close()  # 두번째 웹드라이버도 종료해줘야지
+    driver.quit()  # 다 끝났으니 웹드라이버를 종료해줌
+    headless_driver.quit()  # 두번째 웹드라이버도 종료해줘야지
 
 
 def stop():
@@ -180,11 +180,11 @@ def press():
 
 
 def on_close():
-    global driver, headless_driver
+    # global driver, headless_driver
     if mb.askyesno('종료', '종료하시겠습니까?'):
         w.destroy()
-        driver.close()  # 닫을 때 혹시모르니 살아있는 headless 프로세스를 종료하기 위해 클로즈를 해줌
-        headless_driver.close()  # 두번째 웹드라이버도 종료해줘야지
+        driver.quit()  # 닫을 때 혹시모르니 살아있는 headless 프로세스를 종료하기 위해 클로즈를 해줌
+        headless_driver.quit()  # 두번째 웹드라이버도 종료해줘야지
 
 
 

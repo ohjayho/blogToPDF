@@ -1,6 +1,6 @@
 '''
 제작자는 오재호이며, 이메일 주소는 ohjayhoi@gmail.com 입니다.
-사회복무요원 중 업무를 돕기 위해 작성한 프로그램입니다.
+사회복무요원 복무 중 업무를 돕기 위해 작성한 프로그램입니다.
 무단 수정과 배포를 금지합니다.
 '''
 
@@ -83,9 +83,10 @@ def find_post_list():
     # re.search로 숫자를 찾고, re.sub으로 쉼표를 없애주고 100을 전체 게시글 수로 나눠주고 셋째자리에서 올림
     #print('전체게시글수', total_post_num)
     list_open = driver.find_element(by=By.CLASS_NAME, value='btn_openlist')  # 목록열기 닫기 버튼 선택
-    if list_open.text == '목록열기':  # 목록열기로 떠있으면 목록을 열어준다
+    list_open_status = driver.find_element(by=By.ID, value='toplistSpanBlind') # 목록열기 버튼 텍스트 상태 확인
+    if list_open_status.text == '목록열기':  # 목록열기로 떠있으면 목록을 열어준다
         list_open.send_keys('\n')
-        #print(list_open.text)
+        print('its open ya')
 
     page_bar = driver.find_element(by=By.CLASS_NAME, value='blog2_paginate')  # 페이지번호 틀
     pages = page_bar.find_elements(by=By.CSS_SELECTOR, value='a')  # 각 페이지 숫자 버튼
@@ -109,6 +110,7 @@ def print_page_export():
         headless_driver = r"C:\Users\jay\Desktop\edgedriver_win64\msedgedriver.exe"
         # 또 다른 웹드라이버를 만들어줘야지 초반에 게시글 번호 따려고 한 드라이버를 똑같이 써서 다시 get을 해버리면 dom이 날아가버림
         headless_driver = webdriver.Edge(options=options, service=edge_service)  #service=edge_service 다시 **********
+        print(li, li_date,'안녕')
 
         for i in range(len(li)):
             link = li[i].find('a')['href'] # 게시글 링크 확인
@@ -117,6 +119,7 @@ def print_page_export():
             title = re.sub('[\/:*?"<>|]','',title)  # 파일에 들어갈 수 없는 특수문자 제거
             date = li_date[i].text  # 게시글 작성 날짜 확인
             #print(date, post_num, title)
+            print('테스트라뇽',link,post_num,title)
             make_pdf(headless_driver, post_num, date, title)
             pb['value'] += total_post_num  # Progress Bar 가산
             w.update_idletasks()  # Progress bar 업데이트
@@ -298,7 +301,7 @@ canvas.create_text(
     20.0,
     460.0,
     anchor="nw",
-    text="제작자:oh jay ho\n문의: ohjayhoi@gmail.com",
+    text="제작자:oh jay ho (2022 당시 사회복무요원)\n문의: ohjayhoi@gmail.com",
     fill="#FFFFFF",
     font=("MalgunGothic", 12 * -1)
 )

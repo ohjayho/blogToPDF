@@ -301,7 +301,7 @@ canvas.create_text(
     20.0,
     460.0,
     anchor="nw",
-    text="제작자:oh jay ho (2022 당시 서울 강서구청 사회복무요원)\n문의: ohjayhoi@gmail.com",
+    text="제작자:오재호 (2022 당시 서울 강서구청 사회복무요원)\n문의: ohjayhoi@gmail.com",
     fill="#FFFFFF",
     font=("MalgunGothic", 12 * -1)
 )

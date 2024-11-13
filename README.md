@@ -1,6 +1,7 @@
 ﻿# BlogToPDF
 
 This program converts all posts from a Naver blog into PDF files.
+The primary purpose of this program is to gather evidence of real estate fraud in Korea.
 
 ![화면 캡처 2024-11-13 134403](https://github.com/user-attachments/assets/f087bd6b-36a6-4e84-a12e-50b7259099b1)
 

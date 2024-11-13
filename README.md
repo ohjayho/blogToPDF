@@ -1,4 +1,4 @@
-﻿# Cards Korea
+﻿# BlogToPDF
 
 This program converts all posts from a Naver blog into PDF files.
 
